@@ -141,3 +141,30 @@ WHERE EXISTS (
     GROUP BY s2.product_category
     HAVING COUNT(DISTINCT s2.region) > 3
 );
+
+-- task 12
+
+SELECT
+    s.region,
+    s.sale_date,
+    s.product_name,
+    s.total_amount
+FROM flourmills_sales s
+WHERE EXISTS (
+    SELECT 1
+    FROM flourmills_sales s2
+    WHERE s2.region = s.region
+      AND EXTRACT(YEAR FROM s2.sale_date) = 2024
+);
+
+-- task 13
+
+SELECT DISTINCT
+    s.product_category
+FROM flourmills_sales s
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM flourmills_sales s2
+    WHERE s2.product_category = s.product_category
+      AND s2.total_amount > 500000
+);
