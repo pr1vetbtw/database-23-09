@@ -98,3 +98,33 @@ SELECT
         WHERE s2.region = s.region
     ) AS region_min_amount
 FROM flourmills_sales s;
+
+-- task 9
+
+SELECT
+    s.product_name,
+    s.sale_date,
+    s.product_category,
+    s.total_amount
+FROM flourmills_sales s
+WHERE EXISTS (
+    SELECT 1
+    FROM flourmills_sales s2
+    WHERE s2.product_name = s.product_name
+    GROUP BY s2.product_name
+    HAVING COUNT(DISTINCT EXTRACT(MONTH FROM s2.sale_date)) > 1
+);
+
+-- task 10
+
+SELECT
+    s.product_category,
+    s.product_name,
+    s.total_amount
+FROM flourmills_sales s
+WHERE EXISTS (
+    SELECT 1
+    FROM flourmills_sales s2
+    WHERE s2.product_category = s.product_category
+      AND s2.total_amount > 200000
+);
