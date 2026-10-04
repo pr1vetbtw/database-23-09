@@ -128,3 +128,16 @@ WHERE EXISTS (
     WHERE s2.product_category = s.product_category
       AND s2.total_amount > 200000
 );
+
+-- task 11
+
+SELECT DISTINCT
+    s.product_category
+FROM flourmills_sales s
+WHERE EXISTS (
+    SELECT 1
+    FROM flourmills_sales s2
+    WHERE s2.product_category = s.product_category
+    GROUP BY s2.product_category
+    HAVING COUNT(DISTINCT s2.region) > 3
+);
