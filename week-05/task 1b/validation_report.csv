@@ -1,0 +1,12 @@
+Rule,Invalid rows
+Invalid OrderID,0
+Duplicate OrderID,22
+Invalid Region,0
+Invalid Product,31
+Invalid Quantity,29
+Invalid SalesAmount,38
+Invalid Discount,29
+Invalid OrderDate,17
+Invalid DeliveryDate,10
+Delivery before order,15
+Invalid PhoneNumber,34
